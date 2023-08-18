@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+			<bean name="Emp1" class="com.Collection.EmployENtity">
+			
+			<property name="name" value="SandeepBali"/>
+		<!--	
+			<property name="Phone">
+			
+			<list>
+			<value>57554</value>
+			<value>33333</value>
+			</list>
+			</property>	
+		
+		<property name="phone" value="11111,2222,33333"/>
+		
+		-->
+		<property name="phone" value="#{T(java.util.Arrays).asList('11111', '2222', '33333')}" />
+		
+			
+			<property name="address">
+				<set>
+				
+						<value>Bhubaneswer</value>
+						<value>Cuttack</value>			
+				</set>			
+			</property>		
+			
+			<!--  
+			<property name="subjectmark">
+			<map>
+			<entry key="math"  value="80"/>
+			<entry key="phy"  value="90"/>
+			<entry key="java"  value="70"/>
+			<entry key="python"  value="89"/>
+			</map>
+			
+			
+			</property>	
+			-->
+		<property name="subjectmark" value="#{{'jave':80,'python':100}}"/>
+			
+			</bean>
+</beans>
