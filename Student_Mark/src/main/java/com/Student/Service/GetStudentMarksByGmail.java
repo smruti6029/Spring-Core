@@ -2,6 +2,7 @@ package com.Student.Service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class GetStudentMarksByGmail {
 
 		List<StudentResult> AllSubresult = resultDao.getresultByStudent(student.getId());
 		ArrayList<Integer> marks = new ArrayList();
-		int mark = 0;
+		double mark = 0;
 
 		if (AllSubresult != null) {
 
@@ -41,7 +42,7 @@ public class GetStudentMarksByGmail {
 				mark += res.getMarks();
 				marks.add(res.getMarks());
 			}
-			double percentage = mark / 6;
+			Double percentage = (mark / 6);
 			String Grade = StudentGrade.calculateGrade(percentage, marks);
 			System.out.println("______________________________________");
 			System.out.println("Name Of The Student :-" + student.getName());
@@ -58,7 +59,8 @@ public class GetStudentMarksByGmail {
 			});
 			System.out.println("Total Marks :-" + mark);
 			System.out.println("Grade :-" + Grade);
-			System.out.println("Percentage :-" + percentage);
+			DecimalFormat decimalFormat = new DecimalFormat("#.00");
+			System.out.println("Percentage :-" + decimalFormat.format(percentage));
 			System.out.println("------------------------");
 
 		} else {

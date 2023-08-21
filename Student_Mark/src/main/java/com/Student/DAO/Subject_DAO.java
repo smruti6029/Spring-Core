@@ -36,5 +36,18 @@ public class Subject_DAO {
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
+	public  Subject get(int id)
+	{
+		Subject subject=hibernateTemplate.get(Subject.class,id);
+		return subject;
+		
+	}
 
 }
+
+
+//public Employ getId(int id)
+//{
+//	Employ employ = hibernateTemplate.
+//	return employ;
+//}

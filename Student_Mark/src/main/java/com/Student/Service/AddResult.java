@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -23,21 +24,24 @@ public class AddResult {
 	Result_DAO resultDao = con.getBean("result_dao", Result_DAO.class);
 	Student_DAO studentDao = con.getBean("studentDao", Student_DAO.class);
 	Subject_DAO subjectDao = con.getBean("subjectDao", Subject_DAO.class);
+	
+	
 
 	BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
 	public void addStudentWiseResult() throws IOException {
 
 		int flag = 1;
-		boolean vallidUser = false;
+		boolean vallidUser = true;
 		List<Subject> subject = subjectDao.getAllSubject();
-		System.out.println(subject);
+	
 		System.out.println("Enter Student gmail");
 		String gmail = bf.readLine();
 		Student student = studentDao.getBygmail(gmail);
 
 		List<StudentResult> allStudentResult = resultDao.getAll();
-
+		if(allStudentResult!=null)
+		{
 		for (StudentResult student_res : allStudentResult) {
 			if (student_res.getStudent().getId() == student.getId()) {
 
@@ -45,6 +49,7 @@ public class AddResult {
 				break;
 			} else {
 				vallidUser = true;
+				System.out.println(vallidUser);
 				break;
 			}
 		}
@@ -79,6 +84,7 @@ public class AddResult {
 		else {
 			System.out.println("Mark already  added For This Student");
 		}
+	}
 	}
 
 }

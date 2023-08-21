@@ -2,6 +2,11 @@ package com.Student.utility;
 
 import java.util.ArrayList;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope(value ="singleton")
 final public class StudentGrade {
 
 	public static String calculateGrade(double percentage, ArrayList<Integer> marks) {

@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.hibernate.internal.build.AllowSysOut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -24,6 +26,10 @@ import com.Student.utility.StudentGrade;
 public class GetAllStudentGrade {
 	ApplicationContext con = new AnnotationConfigApplicationContext(JavaConfiguration.class);
 	Result_DAO resultDao = con.getBean("result_dao", Result_DAO.class);
+	
+	@Autowired
+	public StudentGrade studentGrade;
+
 
 	public void getAllStudentMark() {
 
@@ -67,7 +73,7 @@ public class GetAllStudentGrade {
 			}
 
 			Double percentage = mark / 6;
-			String calculateGrade = StudentGrade.calculateGrade(percentage, allMarks);
+			String calculateGrade = studentGrade.calculateGrade(percentage, allMarks);
 			DecimalFormat decimalFormat = new DecimalFormat("#.00");
 			System.out.println("Grade -  " + calculateGrade + " \nPercentage -" + decimalFormat.format(percentage));
 			System.out.println("_________________________________________________");

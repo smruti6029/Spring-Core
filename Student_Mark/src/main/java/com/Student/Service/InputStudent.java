@@ -6,11 +6,13 @@ import java.io.InputStreamReader;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.Student.DAO.Student_DAO;
 import com.Student.Entity.*;
 import com.Student.configu.JavaConfiguration;
 
+@Component
 public class InputStudent {
 	ApplicationContext con = new AnnotationConfigApplicationContext(JavaConfiguration.class);
 	Student_DAO dao = con.getBean("studentDao", Student_DAO.class);
@@ -33,6 +35,7 @@ public class InputStudent {
 			Student student = new Student(rollNo, name, gmail);
 
 			int insert = dao.insert(student);
+			System.out.println("Student Insert Successfully");
 		} else {
 			System.out.println("Student already exit");
 		}

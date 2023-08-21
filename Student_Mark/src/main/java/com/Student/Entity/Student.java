@@ -1,7 +1,8 @@
-package com.Student.Entity;
+	package com.Student.Entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Student {
 	@Column(name = "email")
 	private String email;
 
-	@OneToMany(mappedBy = "student")
+	@OneToMany(mappedBy = "student" ,cascade = CascadeType.ALL)
 	private List<StudentResult> result;
 
 	public int getId() {
@@ -62,6 +63,14 @@ public class Student {
 		super();
 
 	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", email=" + email + ", result=" + result + "]";
+	}
+	
+	
+	
 
 	
 }

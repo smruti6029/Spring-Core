@@ -24,12 +24,14 @@ public class Student_DAO {
 		return i;
 	}
 
-	public Student getBygmail(String gmail) {
-
-		try {
+	public Student getBygmail(String email) {
+		
+		try
+		{
 		List<Student> students = (List<Student>) hibernateTemplate.findByNamedParam("from Student where email = :email",
-				"email", gmail);
-
+				"email", email);
+		
+//				System.out.println(students);
 		return students.get(0);
 		}
 		catch(Exception e)

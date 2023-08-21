@@ -1,5 +1,6 @@
 package com.Student.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.ManyToAny;
 
 @Entity
-@Table(name = "student_result_table")
+@Table(name = "result_table_student")
 public class StudentResult {
 
 	@Id
@@ -27,6 +28,9 @@ public class StudentResult {
 	private Subject subject;
 
 	private int marks;
+	
+	@Column(name="is_recheck")
+	private boolean is_active=false;
 
 	public int getId() {
 		return id;
@@ -70,6 +74,23 @@ public class StudentResult {
 
 	public StudentResult() {
 		super();
+	}
+
+	public boolean get_Is_active() {
+		return is_active;
+	}
+
+	public void setIs_active(boolean is_active) {
+		this.is_active = is_active;
+	}
+
+	public StudentResult(int id, Student student, Subject subject, int marks, boolean is_active) {
+		super();
+		this.id = id;
+		this.student = student;
+		this.subject = subject;
+		this.marks = marks;
+		this.is_active = is_active;
 	}
 
 }
